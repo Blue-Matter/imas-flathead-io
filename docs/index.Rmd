@@ -1,0 +1,230 @@
+---
+title: "Developing A Framework for Management Decision Making for the Tasmanian Sand Flathead Fishery"
+author: "Tom Carruthers <tom@bluematterscience.com>"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+&nbsp;
+
+
+<style>
+  .col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+  }
+  .col3 {
+    columns: 3 100px;
+    -webkit-columns: 3 100px;
+    -moz-columns: 3 100px;
+  }
+  .col4 {
+    columns: 4 100px;
+    -webkit-columns: 4 100px;
+    -moz-columns: 4 100px;
+  }
+</style>
+
+***
+
+<img src="Figures/Front Page.jpg" width = 910>
+
+***
+
+&nbsp;
+
+<img src="Figures/BM.jpg" width="140">
+<img src="Figures/openMSE.jpg" width="150">
+<img src="Figures/IMAS_logo.png" width="130">
+
+
+
+***
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(kableExtra)
+library(readxl)
+
+knitr::opts_chunk$set(echo = FALSE)
+
+maketab <- function(dir,Alab="Statistical Area"){
+  filenam = list.files(dir)
+  nf = length(filenam)
+  DF = data.frame(filenam)
+  names(DF) = c("Area")
+  #filepath = list.files(dir, full.names = T, include.dirs = T)
+  fit.link = paste0('<a href=', file.path(dir, filenam), '> ', DF$Area , ' </a>')
+  DF$Area <- fit.link
+  DT::datatable(DF, escape=1,
+                colnames=c(Alab),
+                filter = 'top',
+                options = list(
+                  pageLength = 10, 
+                  autoWidth = TRUE,
+                  sDom  = '<"top">lrt<"bottom">ip'))
+}
+
+
+
+getprojectinfo<-function(page){
+  tab=as.data.frame(read_excel("Project_Info/Status Assumptions To do.xlsx", sheet = page))
+  tab=tab[,2:3]
+  tab[is.na(tab)]=""
+  kable(tab,"simple")#,col.names=rep("",2)) 
+}
+  
+
+getprog<-function(page){
+  tab=as.data.frame(read_excel("Project_Info/Progress.xlsx", sheet = page))
+  tab=tab[,2:3]
+  tab[is.na(tab)]=""
+  kable(tab,"simple")#,col.names=rep("",2)) 
+}
+  
+
+
+
+```
+
+
+### Disclaimer
+
+The following work is preliminary and intended only as tool for eliciting feedback on data, modelling and other aspects of these fisheries. 
+
+None of these results are final. 
+
+These analyses do not necessarily reflect the point of view of IMAS or other funders and in no way anticipate future policy in this area.
+
+***
+
+### Objective
+
+Develop an MSE framework for the Tasmanian Sand Flathead fishery that informs management decision making including research prioritization, assessment methodology, specification of fishing regulations and enforcment. 
+
+***
+
+### Project details
+
+'Development of a draft operating model in openMSE for the assessment and management strategy evaluation of Southern Sand Flathead in Tasmania.'
+
+
+```{r ProjDets, eval=T}
+dat<-data.frame(c("Term","Funding body","Funding stream","Project No.","Project Partners","Blue Matter Team","IMAS Principal Investigators"),
+                
+                 c("15/03/2024 - 1/7/2024",
+                   "University of Tasmania",
+                   "Sub contract",
+                   "T0030292",
+                   "IMAS, Blue Matter Science Ltd.",
+                   "Drs. Tom Carruthers & Adrian Hordyk",
+                   "Dr. Sean Tracey"))
+
+kable(dat,"simple",col.names=rep("",2)) 
+ 
+
+```
+
+***
+
+
+### Study Area
+
+
+<img src="Figures/Map_all.png" width="800">
+
+Figure 1. Study area. Area definitions (top left), areas of high recreational effort (top middle), areas of research focus (top right), commercial effort distribution (bottom left), commercial catch per unit effort (bottom right). 
+
+&nbsp;
+
+
+
+
+
+***
+
+### Meta data
+
+[Meta data summary, Kruek, N.](Data_summries/BMS_overview_data_and_contacts_flathead.xlsx)
+
+***
+
+
+### Software and Code
+
+[IMAS flathead GitHub repository (private) - requests for access go to Sean Tracey](https://github.com/bwwolfe/imas-flathead)
+
+[openMSE (MSEtool, DLMtool, SAMtool R libraries)](https://openMSE.com)
+
+[Rapid Conditioning Model (RCM) (Huynh 2023)](https://samtool.openmse.com/reference/RCM.html)
+
+
+
+***
+
+
+### Recent Presentations
+
+[Marshall, S. et al. 2022. Elevent years of fishery-independent monitory of Tasmanian sand flathead populations](Presentations/ASFB Nov 8th 2022.pptx)
+
+[Krueck, N. 2023. Commercial logbook data for fishery assessments of Southern Sand Flathead](Presentations/BMS_commercial_flathead_data.pdf)
+
+[Krueck, N. 2023. State-wide Rec Fishing Surveys TAS](Presentations/State-wide Rec Fishing Surveys TAS.pdf)
+
+
+
+***
+
+### Reports
+
+[Coulson, P, et al. 2022. Fishery-independent monitoring of sand flathead popuation dynamics](Reports/IMASSandFlatheadIndepSurveys_2022.pdf)
+
+***
+
+### References
+
+[IMAS. 2024. Recreational Fishing Research](https://www.imas.utas.edu.au/research/fisheries-and-aquaculture/fisheries/recreational-fishing-research#Rec-survey)
+
+***
+
+### Acknowledgements
+
+Sean Tracey, Nils Krueck, Kate Stark, Alyssa Marshall, Peter Coulson, Barrett Wolfe, Katie Cresswell, Ruth Sharples.
+
+***
+
+
+### Appendix 1: MSE terminology
+
+### Operating models 
+
+An operating model is a theoretical description of fishery and population dynamics used for the testing of management strategies that could include, for example,  data collection protocols, stock assessment methods, harvest control rules, enforcement policies and reference points. In fisheries, operating models are used in closed-loop simulation to test management procedures (aka. harvest strategy) accounting for feedbacks between the system, data, management procedure and implementation. A management procedure is any codifable rule that calculates management advice from data. Management Strategy Evaluation uses closed-loop simulation of management procedures as a core technical component but is a wider process of stakeholder and manager engagement that identifies system uncertainties, performance metrics, viable management procedures, ultimately aiming to adopt an MP for the provision of management advice for an established time period. 
+
+&nbsp;
+
+#### Reference Case Operating Models
+
+The reference case operating model is used as the single 'base' operating model from which reference set and robustness set operating models are specified. Reference and robustness tests are typically 1-factor departures from the reference case OM, however sometimes reference set OMs are organized in a factorial grid across primary axes of uncertainty. 
+
+&nbsp;
+
+#### Reference Set Operating Models
+
+Reference set operating models span a plausible range of the core uncertainties for states of nature. These are often the types of alternative parameterizations or assumptions that would be included in a stock assessment sensitivity analysis. 
+
+The role of the reference set operating models is to provide the central basis for evaluating the performance of candidate management procedures, for example rejecting badly performing harvest strategies. 
+
+&nbsp;
+
+#### Robustness Set Operating Models
+
+Robustness set operating models are intended to include additional sources of uncertainty for providing further discrimination among management procedures that perform comparably among reference set operating models. 
+
+Robustness operating models often represent system states of nature that are not empirically informed or are hypotheses of a subset of stakeholders.
+
+&nbsp;
+
+***
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
