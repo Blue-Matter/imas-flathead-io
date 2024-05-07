@@ -48,28 +48,10 @@ library(readxl)
 
 knitr::opts_chunk$set(echo = FALSE)
 
-maketab <- function(dir,Alab="Statistical Area"){
-  filenam = list.files(dir)
-  nf = length(filenam)
-  DF = data.frame(filenam)
-  names(DF) = c("Area")
-  #filepath = list.files(dir, full.names = T, include.dirs = T)
-  fit.link = paste0('<a href=', file.path(dir, filenam), '> ', DF$Area , ' </a>')
-  DF$Area <- fit.link
-  DT::datatable(DF, escape=1,
-                colnames=c(Alab),
-                filter = 'top',
-                options = list(
-                  pageLength = 10, 
-                  autoWidth = TRUE,
-                  sDom  = '<"top">lrt<"bottom">ip'))
-}
-
-
 
 getprojectinfo<-function(page){
-  tab=as.data.frame(read_excel("Project_Info/Status Assumptions To do.xlsx", sheet = page))
-  tab=tab[,2:3]
+  tab=as.data.frame(read_excel("Project_Info/Project_Info.xlsx", sheet = page))
+  #tab=tab[,2:3]
   tab[is.na(tab)]=""
   kable(tab,"simple")#,col.names=rep("",2)) 
 }
@@ -77,7 +59,7 @@ getprojectinfo<-function(page){
 
 getprog<-function(page){
   tab=as.data.frame(read_excel("Project_Info/Progress.xlsx", sheet = page))
-  tab=tab[,2:3]
+  #tab=tab[,2:3]
   tab[is.na(tab)]=""
   kable(tab,"simple")#,col.names=rep("",2)) 
 }
@@ -127,6 +109,20 @@ kable(dat,"simple",col.names=rep("",2))
 
 ***
 
+&nbsp;
+
+### Current Issues
+
+Tabulated below are a list of current issues / assumptions that should be addressed at the current stage of framework development. 
+
+```{r}
+getprojectinfo("Issues")
+```
+
+***
+
+&nbsp;
+
 
 ### Study Area
 
@@ -138,17 +134,45 @@ Figure 1. Study area. Area definitions (top left), areas of high recreational ef
 &nbsp;
 
 
+***
 
+
+### Operating models
+
+#### Stochasticity in life history characteristics
+
+In order to include plausible uncertainty in the life-history dynamics for sand flathead, frequentist models of somatic growth and the length-weight relationship were fitted to data and parameter values draw from the variance covariance matrix arising from those fits (Figures 2 and 3)
+
+<img src="Figures/OMs/Stoch_LH_FI.jpg" width="550">
+
+Figure 2. Generation of stochastic life history parameters for a preliminary operating model for Flinders Island. Top left is the fit of a preliminary von Bertalanffy somatic growth model to observed age-length data.  Top right is the correlation among simulated asympotic length (Linf) and maximum growth rate (K) parameters drawn from the variance-covariance matrix of the model fit. Bottom left is the simualted natual mortality rate (M) given a fixed ratio of M/K and a lognormal error with CV of 10%. Bottom right is the simulated length at 50% maturity (L50) given a fixed ratio of L50/Linf and a lognormal error with CV of 10%. 
+
+&nbsp;
+
+
+<img src="Figures/OMs/Stoch_WL_FI.jpg" width="550">
+
+Figure 3. Generation of stochastic weight-length parameters for a preliminary operating model for Flinders Island. Top left is the fit of a preliminary weight length (W=aL^b) growth model to observed length-weight data.  Top right is the correlation among the slope (a) and power (b) parameters drawn from the variance-covariance matrix of the model fit.
+
+&nbsp;
 
 
 ***
 
-### Meta data
+### Meta Data
 
 [Meta data summary, Kruek, N.](Data_summries/BMS_overview_data_and_contacts_flathead.xlsx)
 
 ***
+&nbsp;
 
+### Data
+
+[Tasmanaian Wild Fisheries Assessments - Surveys - Age Data](https://tasfisheriesresearch.org/sfh/surveys/age-data/)
+
+***
+
+&nbsp;
 
 ### Software and Code
 
@@ -159,8 +183,9 @@ Figure 1. Study area. Area definitions (top left), areas of high recreational ef
 [Rapid Conditioning Model (RCM) (Huynh 2023)](https://samtool.openmse.com/reference/RCM.html)
 
 
-
 ***
+
+&nbsp;
 
 
 ### Recent Presentations
@@ -172,14 +197,35 @@ Figure 1. Study area. Area definitions (top left), areas of high recreational ef
 [Krueck, N. 2023. State-wide Rec Fishing Surveys TAS](Presentations/State-wide Rec Fishing Surveys TAS.pdf)
 
 
-
 ***
+
+&nbsp;
 
 ### Reports
 
 [Coulson, P, et al. 2022. Fishery-independent monitoring of sand flathead popuation dynamics](Reports/IMASSandFlatheadIndepSurveys_2022.pdf)
 
+[Krueck et al. 2023 Stock Assesssment](Reports/Sand_Flathead-Assessment_2023_FINAL.pdf)
+
+[NRE. 2023. Sand Flathead in Tasmania WHAT’S HAPPENING WITH THE FISHERY?  Wild Fisheries Management Branch Department of Natural Resources and Environment Tasmania](https://fishing.tas.gov.au/Documents/Sand-Flathead-Whats%20Happening%20Paper-March23.pdf)
+
 ***
+
+&nbsp;
+
+### Research papers
+
+[Hirst, Alastair & Rees, Christine & Hamer, Paul & Conron, Simon & Kemp, Jodie. 2014. The decline of sand flathead stocks in Port Phillip Bay: magnitude, causes and future prospects](Papers/RFGPResearchReport_SandFlathead_Final.pdf)
+
+[Lyle, J.M., Brown, I.W., Moltschaniwskyj, N.A., Mayer, D., and Sawynok, W. 2006. National strategy for the survival of
+released line caught fish: maximising post-release survival in line caught flathead taken in sheltered coastal waters.
+FRDC Project No. 2004/071. Tasmanian Aquaculture and Fisheries Institute and Queensland Department of Primary
+Industries and Fisheries](Papers/Lyle et al 2004-071-Tas-Flathead.pdf)
+
+
+***
+
+&nbsp;
 
 ### References
 
@@ -187,11 +233,16 @@ Figure 1. Study area. Area definitions (top left), areas of high recreational ef
 
 ***
 
+&nbsp;
+
 ### Acknowledgements
 
 Sean Tracey, Nils Krueck, Kate Stark, Alyssa Marshall, Peter Coulson, Barrett Wolfe, Katie Cresswell, Ruth Sharples.
 
 ***
+
+&nbsp;
+&nbsp;
 
 
 ### Appendix 1: MSE terminology
