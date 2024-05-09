@@ -1,7 +1,7 @@
 
 # Copy Files from imas-flathead to imas-flathead-io
 
-Gitdir = "C:/Github/"
+Gitdir = "C:/Github/" # Gitdir = "C:/Users/tcarruth/Documents/Github/"
 maindir = paste0(Gitdir,"imas-flathead")
 iodir = paste0(Gitdir,"imas-flathead-io/docs")
 
@@ -12,7 +12,7 @@ copystuff = function(fromdir,todir,overwrite=T){
   
 }
 
-copystuff(paste0(maindir,"/operating_models/figures"), paste0(iodir,"/Figures/OMs"))
+copystuff(paste0(maindir,"/operating_models/Figures"), paste0(iodir,"/Figures/OMs"))
 
 
 

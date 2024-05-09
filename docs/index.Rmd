@@ -137,9 +137,110 @@ Figure 1. Study area. Area definitions (top left), areas of high recreational ef
 ***
 
 
-### Operating models
+### Time Series Data
 
-#### Stochasticity in life history characteristics
+#### Recreational Fishery
+
+
+<img src="Figures/OMs/Rec_Catch.jpg" width="600">
+
+Figure 2. Recreational catches by large region. 
+
+&nbsp;
+
+
+
+<img src="Figures/OMs/Rec_Effort.jpg" width="600">
+
+Figure 3. Recreational effort by large region. 
+
+&nbsp;
+
+
+
+
+<img src="Figures/OMs/Rec_Indices.jpg" width="600">
+
+Figure 4. Standardized Recreational CPUE indices by large region [log(CPUE) ~ Year + quarter + small_region + Method + Waterbody]. 
+
+&nbsp;
+
+
+
+
+#### Commercial Fishery
+
+
+<img src="Figures/OMs/Com_Catch.jpg" width="600">
+
+Figure 5. Commercial catch by large region.  
+
+&nbsp;
+
+
+
+<img src="Figures/OMs/Com_Effort.jpg" width="600">
+
+Figure 6. Commercial effort by large region.  
+
+&nbsp;
+
+
+
+<img src="Figures/OMs/Com_CPUE.jpg" width="600">
+
+Figure 7. Commercial effort by large region.  
+
+&nbsp;
+
+
+
+#### Historial Composition Data
+
+
+
+<img src="Figures/OMs/Hist_Len.jpg" width="600">
+
+Figure 8. Aggregated historical length frequencies by large region.   
+
+&nbsp;
+
+
+
+<img src="Figures/OMs/Hist_Age.jpg" width="600">
+
+Figure 9. Aggregated historical age frequencies by large region.   
+
+&nbsp;
+
+
+
+#### Fishery Independent Composition Data
+
+
+<img src="Figures/OMs/FI_Len.jpg" width="600">
+
+Figure 10. Aggregated length frequencies from the fishery independent survey by large region.   
+
+&nbsp;
+
+
+
+<img src="Figures/OMs/FI_Age.jpg" width="600">
+
+Figure 11. Aggregated age frequencies from the fishery independent survey by large region.   
+
+&nbsp;
+
+
+
+
+***
+
+&nbsp;
+
+
+### Life history chracteristics
 
 In order to include plausible uncertainty in the life-history dynamics for sand flathead, frequentist models of somatic growth and the length-weight relationship were fitted to data and parameter values draw from the variance covariance matrix arising from those fits (Figures 2 and 3)
 
@@ -174,20 +275,24 @@ Figure 4b. The logistic relationship between length and fraction mature (fractio
 
 ***
 
-### Meta Data
+
+
+### Data Links
+
+
+[Tasmanaian Wild Fisheries Assessments - Surveys - Age Data](https://tasfisheriesresearch.org/sfh/surveys/age-data/)
+
+***
+
+&nbsp; 
+
+### Meta Data Links
 
 [Meta data summary, Kruek, N.](Data_summaries/BMS_overview_data_and_contacts_flathead.xlsx)
 
 ***
 &nbsp;
 
-### Data
-
-[Tasmanaian Wild Fisheries Assessments - Surveys - Age Data](https://tasfisheriesresearch.org/sfh/surveys/age-data/)
-
-***
-
-&nbsp;
 
 ### Software and Code
 
