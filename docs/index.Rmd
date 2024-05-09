@@ -96,7 +96,7 @@ dat<-data.frame(c("Term","Funding body","Funding stream","Project No.","Project 
                 
                  c("15/03/2024 - 1/7/2024",
                    "University of Tasmania",
-                   "Sub contract",
+                   "Subcontract",
                    "T0030292",
                    "IMAS, Blue Matter Science Ltd.",
                    "Drs. Tom Carruthers & Adrian Hordyk",
@@ -147,6 +147,7 @@ In order to include plausible uncertainty in the life-history dynamics for sand 
 
 Figure 2. Generation of stochastic life history parameters for a preliminary operating model for Flinders Island. Top left is the fit of a preliminary von Bertalanffy somatic growth model to observed age-length data.  Top right is the correlation among simulated asympotic length (Linf) and maximum growth rate (K) parameters drawn from the variance-covariance matrix of the model fit. Bottom left is the simualted natual mortality rate (M) given a fixed ratio of M/K and a lognormal error with CV of 10%. Bottom right is the simulated length at 50% maturity (L50) given a fixed ratio of L50/Linf and a lognormal error with CV of 10%. 
 
+
 &nbsp;
 
 
@@ -155,6 +156,20 @@ Figure 2. Generation of stochastic life history parameters for a preliminary ope
 Figure 3. Generation of stochastic weight-length parameters for a preliminary operating model for Flinders Island. Top left is the fit of a preliminary weight length (W=aL^b) growth model to observed length-weight data.  Top right is the correlation among the slope (a) and power (b) parameters drawn from the variance-covariance matrix of the model fit.
 
 &nbsp;
+
+
+The mean 'maturity' (fraction of individuals mature) ogive was calculated from the historical data (all regions combined, Figure 4a) and was the basis for simulating correlated uncertainty in L50 (length at 50% maturity) in Figure 2. A very different maturity ogive is provided by the more recent fishery independent survey (all regional combined, Figure 4b).
+
+<img src="Figures/OMs/Maturity.jpg" width="300">
+
+Figure 4a. The logistic relationship between length and fraction mature (fraction 'stage gonad development 3-7') of the historical data set. 
+
+&nbsp;
+
+
+<img src="Figures/OMs/Maturity_FIdat.jpg" width="300">
+
+Figure 4b. The logistic relationship between length and fraction mature (fraction 'stage gonad development' > 2) of the fishery independent survey data set. 
 
 
 ***
@@ -208,6 +223,8 @@ Figure 3. Generation of stochastic weight-length parameters for a preliminary op
 [Krueck et al. 2023 Stock Assesssment](Reports/Sand_Flathead-Assessment_2023_FINAL.pdf)
 
 [NRE. 2023. Sand Flathead in Tasmania WHAT’S HAPPENING WITH THE FISHERY?  Wild Fisheries Management Branch Department of Natural Resources and Environment Tasmania](https://fishing.tas.gov.au/Documents/Sand-Flathead-Whats%20Happening%20Paper-March23.pdf)
+
+[Government of Tasmania. 2023. Flathead Rules Summary Oct 2023](Reports/Flathead-Rules-Summary-Oct-2023.pdf)
 
 ***
 
