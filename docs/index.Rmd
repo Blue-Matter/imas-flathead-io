@@ -176,7 +176,7 @@ Figure 4b. The logistic relationship between length and fraction mature (fractio
 
 ### Meta Data
 
-[Meta data summary, Kruek, N.](Data_summries/BMS_overview_data_and_contacts_flathead.xlsx)
+[Meta data summary, Kruek, N.](Data_summaries/BMS_overview_data_and_contacts_flathead.xlsx)
 
 ***
 &nbsp;
