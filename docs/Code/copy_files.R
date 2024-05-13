@@ -15,5 +15,6 @@ copystuff = function(fromdir,todir,overwrite=T){
 copystuff(paste0(maindir,"/operating_models/Figures"), paste0(iodir,"/Figures/OMs"))
 
 
+copystuff(paste0(maindir,"/operating_models/reports"), paste0(iodir,"/OM_reports"))
 
 

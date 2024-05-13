@@ -2,7 +2,12 @@
 title: "Developing A Framework for Management Decision Making for the Tasmanian Sand Flathead Fishery"
 author: "Tom Carruthers <tom@bluematterscience.com>"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: yes
+    number_sections: true
+
 ---
 &nbsp;
 
@@ -23,6 +28,36 @@ output: html_document
     -webkit-columns: 4 100px;
     -moz-columns: 4 100px;
   }
+</style>
+
+
+
+<style type="text/css">
+
+body{ /* Normal  */
+   font-size: 12px;
+}
+td {  /* Table  */
+   font-size: 11px;
+}
+h1 { /* Header 1 */
+ font-size: 18px;
+ color: DarkBlue;
+}
+h2 { /* Header 2 */
+ font-size: 15px;
+ color: DarkBlue;
+}
+h3 { /* Header 3 */
+ font-size: 14px;
+ color: DarkBlue;
+}
+code.r{ /* Code block */
+  font-size: 10px;
+}
+pre { /* Code block */
+  font-size: 10px
+}
 </style>
 
 ***
@@ -48,6 +83,24 @@ library(readxl)
 
 knitr::opts_chunk$set(echo = FALSE)
 
+maketab <- function(dir,Alab="Large Region"){
+  filenam = list.files(dir)
+  nf = length(filenam)
+  DF = data.frame(filenam)
+  names(DF) = c("Area")
+  #filepath = list.files(dir, full.names = T, include.dirs = T)
+  fit.link = paste0('<a href=', file.path(dir, filenam), '> ', DF$Area , ' </a>')
+  DF$Area <- fit.link
+  DT::datatable(DF, escape=1,
+                colnames=c(Alab),
+                filter = 'top',
+                options = list(
+                  pageLength = 10, 
+                  autoWidth = TRUE,
+                  sDom  = '<"top">lrt<"bottom">ip'))
+}
+
+
 
 getprojectinfo<-function(page){
   tab=as.data.frame(read_excel("Project_Info/Project_Info.xlsx", sheet = page))
@@ -70,7 +123,7 @@ getprog<-function(page){
 ```
 
 
-### Disclaimer
+# Disclaimer
 
 The following work is preliminary and intended only as tool for eliciting feedback on data, modelling and other aspects of these fisheries. 
 
@@ -80,13 +133,13 @@ These analyses do not necessarily reflect the point of view of IMAS or other fun
 
 ***
 
-### Objective
+# Objective
 
 Develop an MSE framework for the Tasmanian Sand Flathead fishery that can inform management decision making including research prioritization, assessment methodology, specification of fishing regulations and enforcement. 
 
 ***
 
-### Project details
+# Project details
 
 'Development of a draft operating model in openMSE for the assessment and management strategy evaluation of Southern Sand Flathead in Tasmania.'
 
@@ -107,24 +160,38 @@ kable(dat,"simple",col.names=rep("",2))
 
 ```
 
-***
-
 &nbsp;
 
-### Current Issues
+***
 
-Tabulated below are a list of current issues / assumptions that should be addressed at the current stage of framework development. 
 
+# Current Issues
+
+Tabulated below are a list of current issues / assumptions that should be addressed at the current stage of framework development (Table 1). Also tablulated is the current 'to-do' list for the Blue Matter team (Table 2) 
+
+
+Table 1. Current issues / assumptions / items for discussion
 ```{r}
 getprojectinfo("Issues")
 ```
 
-***
 
 &nbsp;
 
 
-### Study Area
+Table 2. Blue Matter to-do list. 
+
+```{r}
+getprojectinfo("Todo")
+```
+
+&nbsp;
+
+***
+
+# Study Area
+
+Currently the study area was divided into the five large regions (top middle Figure 1): SEC, EC, NEC, NWC, WC. Limited data were available for WC in this round of operating model development. 
 
 
 <img src="Figures/Map_all.png" width="800">
@@ -136,10 +203,9 @@ Figure 1. Study area. Area definitions (top left), areas of high recreational ef
 
 ***
 
+# Time Series Data
 
-### Time Series Data
-
-#### Recreational Fishery
+## Recreational Fishery
 
 
 <img src="Figures/OMs/Rec_Catch.jpg" width="600">
@@ -168,7 +234,7 @@ Figure 4. Standardized Recreational CPUE indices by large region [log(CPUE) ~ Ye
 
 
 
-#### Commercial Fishery
+## Commercial Fishery
 
 
 <img src="Figures/OMs/Com_Catch.jpg" width="600">
@@ -195,7 +261,7 @@ Figure 7. Commercial effort by large region.
 
 
 
-#### Historial Composition Data
+## Historial Composition Data
 
 
 
@@ -215,7 +281,7 @@ Figure 9. Aggregated historical age frequencies by large region.
 
 
 
-#### Fishery Independent Composition Data
+## Fishery Independent Composition Data
 
 
 <img src="Figures/OMs/FI_Len.jpg" width="600">
@@ -234,19 +300,15 @@ Figure 11. Aggregated age frequencies from the fishery independent survey by lar
 
 
 
-
 ***
 
-&nbsp;
+# Life history chracteristics
 
-
-### Life history chracteristics
-
-In order to include plausible uncertainty in the life-history dynamics for sand flathead, frequentist models of somatic growth and the length-weight relationship were fitted to data and parameter values draw from the variance covariance matrix arising from those fits (Figures 2 and 3)
+In order to include plausible uncertainty in the life-history dynamics for sand flathead, frequentist models of somatic growth and the length-weight relationship were fitted to data and parameter values draw from the variance covariance matrix arising from those fits (Figures 12 and 13)
 
 <img src="Figures/OMs/Stoch_LH_FI.jpg" width="550">
 
-Figure 2. Generation of stochastic life history parameters for a preliminary operating model for Flinders Island. Top left is the fit of a preliminary von Bertalanffy somatic growth model to observed age-length data.  Top right is the correlation among simulated asympotic length (Linf) and maximum growth rate (K) parameters drawn from the variance-covariance matrix of the model fit. Bottom left is the simualted natual mortality rate (M) given a fixed ratio of M/K and a lognormal error with CV of 10%. Bottom right is the simulated length at 50% maturity (L50) given a fixed ratio of L50/Linf and a lognormal error with CV of 10%. 
+Figure 12. Generation of stochastic life history parameters for a preliminary operating model for Flinders Island. Top left is the fit of a preliminary von Bertalanffy somatic growth model to observed age-length data.  Top right is the correlation among simulated asympotic length (Linf) and maximum growth rate (K) parameters drawn from the variance-covariance matrix of the model fit. Bottom left is the simualted natual mortality rate (M) given a fixed ratio of M/K and a lognormal error with CV of 10%. Bottom right is the simulated length at 50% maturity (L50) given a fixed ratio of L50/Linf and a lognormal error with CV of 10%. 
 
 
 &nbsp;
@@ -254,47 +316,67 @@ Figure 2. Generation of stochastic life history parameters for a preliminary ope
 
 <img src="Figures/OMs/Stoch_WL_FI.jpg" width="550">
 
-Figure 3. Generation of stochastic weight-length parameters for a preliminary operating model for Flinders Island. Top left is the fit of a preliminary weight length (W=aL^b) growth model to observed length-weight data.  Top right is the correlation among the slope (a) and power (b) parameters drawn from the variance-covariance matrix of the model fit.
+Figure 13. Generation of stochastic weight-length parameters for a preliminary operating model for Flinders Island. Top left is the fit of a preliminary weight length (W=aL^b) growth model to observed length-weight data.  Top right is the correlation among the slope (a) and power (b) parameters drawn from the variance-covariance matrix of the model fit.
 
 &nbsp;
 
 
-The mean 'maturity' (fraction of individuals mature) ogive was calculated from the historical data (all regions combined, Figure 4a) and was the basis for simulating correlated uncertainty in L50 (length at 50% maturity) in Figure 2. A very different maturity ogive is provided by the more recent fishery independent survey (all regional combined, Figure 4b).
+The mean 'maturity' (fraction of individuals mature) ogive was calculated from the historical data (all regions combined, Figure 4a) and was the basis for simulating correlated uncertainty in L50 (length at 50% maturity) in Figure 12. A very different maturity ogive is provided by the more recent fishery independent survey (all regional combined, Figure 14b).
 
 <img src="Figures/OMs/Maturity.jpg" width="300">
 
-Figure 4a. The logistic relationship between length and fraction mature (fraction 'stage gonad development 3-7') of the historical data set. 
+Figure 14a. The logistic relationship between length and fraction mature (fraction 'stage gonad development 3-7') of the historical data set. 
 
 &nbsp;
 
 
 <img src="Figures/OMs/Maturity_FIdat.jpg" width="300">
 
-Figure 4b. The logistic relationship between length and fraction mature (fraction 'stage gonad development' > 2) of the fishery independent survey data set. 
+Figure 14b. The logistic relationship between length and fraction mature (fraction 'stage gonad development' > 2) of the fishery independent survey data set. 
+
+&nbsp;
+
+***
+
+# Operating Models
+
+Operating models were fitted using the [Rapid Conditioning Model](https://openmse.com/tutorial-rcm/) of the [openMSE R package](https://openmse.com/). The model is structured to have two fisheries (recreational and commercial) and four surveys (Recreational CPUE, commercial CPUE, historical age/length compositions, recreational survey age/length compositions). Currently fishery (Rec, Com) selectivities are specified by the user but could be linked to the length/age composition of the surveys if that is appropriate.  
+
+Current the model is 'conditional on catch' which means that a complete catch history for both fleets had to be imputed. This was done by linear ramping from a starting year (1974 - picked arbitrarily) to the first observation, linearly interpolating between observations and then constant extrapolation of the last observation. An alternative would be to start the model later and assume an 'equilibrium average catch' prior to the first year, or to instead interpolate effort data and make the model 'conditional on effort'. 
+
+The models were fitted to length an age composition data assuming a multinomial likelihood function and an average effective sample size of 50 observations per year for each composition data stream (hist / rec x age / length). 
+
+The full operating model fitting reports are available to download from Table 3. 
+
+&nbsp;
+
+Table 3. RCM Operating Model Fitting Reports 
+```{r}
+maketab("./OM_reports","Large Region")
+```
+
 
 
 ***
 
+# Supporting Information
 
-
-### Data Links
+## Data Links
 
 
 [Tasmanaian Wild Fisheries Assessments - Surveys - Age Data](https://tasfisheriesresearch.org/sfh/surveys/age-data/)
 
-***
-
-&nbsp; 
-
-### Meta Data Links
-
-[Meta data summary, Kruek, N.](Data_summaries/BMS_overview_data_and_contacts_flathead.xlsx)
-
-***
 &nbsp;
 
 
-### Software and Code
+## Meta Data Links
+
+[Meta data summary, Kruek, N.](Data_summaries/BMS_overview_data_and_contacts_flathead.xlsx)
+
+&nbsp;
+
+
+## Software and Code
 
 [IMAS flathead GitHub repository (private) - requests for access go to Sean Tracey](https://github.com/bwwolfe/imas-flathead)
 
@@ -303,12 +385,10 @@ Figure 4b. The logistic relationship between length and fraction mature (fractio
 [Rapid Conditioning Model (RCM) (Huynh 2023)](https://samtool.openmse.com/reference/RCM.html)
 
 
-***
-
 &nbsp;
 
 
-### Recent Presentations
+## Recent Presentations
 
 [Marshall, S. et al. 2022. Elevent years of fishery-independent monitory of Tasmanian sand flathead populations](Presentations/ASFB Nov 8th 2022.pptx)
 
@@ -317,11 +397,10 @@ Figure 4b. The logistic relationship between length and fraction mature (fractio
 [Krueck, N. 2023. State-wide Rec Fishing Surveys TAS](Presentations/State-wide Rec Fishing Surveys TAS.pdf)
 
 
-***
-
 &nbsp;
 
-### Reports
+
+## Reports
 
 [Coulson, P, et al. 2022. Fishery-independent monitoring of sand flathead popuation dynamics](Reports/IMASSandFlatheadIndepSurveys_2022.pdf)
 
@@ -331,11 +410,10 @@ Figure 4b. The logistic relationship between length and fraction mature (fractio
 
 [Government of Tasmania. 2023. Flathead Rules Summary Oct 2023](Reports/Flathead-Rules-Summary-Oct-2023.pdf)
 
-***
-
 &nbsp;
 
-### Research papers
+
+## Research papers
 
 [Hirst, Alastair & Rees, Christine & Hamer, Paul & Conron, Simon & Kemp, Jodie. 2014. The decline of sand flathead stocks in Port Phillip Bay: magnitude, causes and future prospects](Papers/RFGPResearchReport_SandFlathead_Final.pdf)
 
@@ -345,43 +423,41 @@ FRDC Project No. 2004/071. Tasmanian Aquaculture and Fisheries Institute and Que
 Industries and Fisheries](Papers/Lyle et al 2004-071-Tas-Flathead.pdf)
 
 
-***
-
 &nbsp;
 
-### References
+
+## References
 
 [IMAS. 2024. Recreational Fishing Research](https://www.imas.utas.edu.au/research/fisheries-and-aquaculture/fisheries/recreational-fishing-research#Rec-survey)
 
-***
-
 &nbsp;
-
-### Acknowledgements
-
-Sean Tracey, Nils Krueck, Kate Stark, Alyssa Marshall, Peter Coulson, Barrett Wolfe, Katie Cresswell, Ruth Sharples.
 
 ***
 
+
+# Acknowledgements
+
+Many thanks to Sean Tracey, Nils Krueck, Kate Stark, Alyssa Marshall, Peter Coulson, Barrett Wolfe, Katie Cresswell, Ruth Sharples.
+
 &nbsp;
-&nbsp;
 
+***
 
-### Appendix 1: MSE terminology
+# Appendix 1: MSE terminology
 
-### Operating models 
+## Operating models 
 
 An operating model is a theoretical description of fishery and population dynamics used for the testing of management strategies that could include, for example,  data collection protocols, stock assessment methods, harvest control rules, enforcement policies and reference points. In fisheries, operating models are used in closed-loop simulation to test management procedures (aka. harvest strategy) accounting for feedbacks between the system, data, management procedure and implementation. A management procedure is any codifable rule that calculates management advice from data. Management Strategy Evaluation uses closed-loop simulation of management procedures as a core technical component but is a wider process of stakeholder and manager engagement that identifies system uncertainties, performance metrics, viable management procedures, ultimately aiming to adopt an MP for the provision of management advice for an established time period. 
 
 &nbsp;
 
-#### Reference Case Operating Models
+## Reference Case Operating Models
 
 The reference case operating model is used as the single 'base' operating model from which reference set and robustness set operating models are specified. Reference and robustness tests are typically 1-factor departures from the reference case OM, however sometimes reference set OMs are organized in a factorial grid across primary axes of uncertainty. 
 
 &nbsp;
 
-#### Reference Set Operating Models
+## Reference Set Operating Models
 
 Reference set operating models span a plausible range of the core uncertainties for states of nature. These are often the types of alternative parameterizations or assumptions that would be included in a stock assessment sensitivity analysis. 
 
@@ -389,7 +465,7 @@ The role of the reference set operating models is to provide the central basis f
 
 &nbsp;
 
-#### Robustness Set Operating Models
+## Robustness Set Operating Models
 
 Robustness set operating models are intended to include additional sources of uncertainty for providing further discrimination among management procedures that perform comparably among reference set operating models. 
 
