@@ -167,7 +167,9 @@ kable(dat,"simple",col.names=rep("",2))
 
 # Current Issues
 
-Tabulated below are a list of current issues / assumptions that should be addressed at the current stage of framework development (Table 1). Also tablulated is the current 'to-do' list for the Blue Matter team (Table 2) 
+The straw-dog operating models have been revised following feedback from the group. 
+
+Tabulated below are a list of current issues / assumptions that should be addressed at the current stage of framework development (Table 1). Also tabulated is the current 'to-do' list for the Blue Matter team (Table 2) 
 
 
 Table 1. Current issues / assumptions / items for discussion
