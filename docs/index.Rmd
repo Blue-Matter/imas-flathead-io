@@ -310,7 +310,7 @@ In order to include plausible uncertainty in the life-history dynamics for sand 
 
 <img src="Figures/OMs/Stoch_LH_FI.jpg" width="550">
 
-Figure 12. Generation of stochastic life history parameters for a preliminary operating model for Flinders Island. Top left is the fit of a preliminary von Bertalanffy somatic growth model to observed age-length data.  Top right is the correlation among simulated asympotic length (Linf) and maximum growth rate (K) parameters drawn from the variance-covariance matrix of the model fit. Bottom left is the simualted natual mortality rate (M) given a fixed ratio of M/K and a lognormal error with CV of 10%. Bottom right is the simulated length at 50% maturity (L50) given a fixed ratio of L50/Linf and a lognormal error with CV of 10%. 
+Figure 12. Generation of stochastic life history parameters (females) for a preliminary operating model for Flinders Island. Top left is the fit of a preliminary von Bertalanffy somatic growth model to observed age-length data.  Top right is the correlation among simulated asympotic length (Linf) and maximum growth rate (K) parameters drawn from the variance-covariance matrix of the model fit. Bottom left is the simualted natual mortality rate (M) given a fixed ratio of M/K and a lognormal error with CV of 10%. Bottom right is the simulated length at 50% maturity (L50) given a fixed ratio of L50/Linf and a lognormal error with CV of 10%. 
 
 
 &nbsp;
@@ -318,7 +318,7 @@ Figure 12. Generation of stochastic life history parameters for a preliminary op
 
 <img src="Figures/OMs/Stoch_WL_FI.jpg" width="550">
 
-Figure 13. Generation of stochastic weight-length parameters for a preliminary operating model for Flinders Island. Top left is the fit of a preliminary weight length (W=aL^b) growth model to observed length-weight data.  Top right is the correlation among the slope (a) and power (b) parameters drawn from the variance-covariance matrix of the model fit.
+Figure 13. Generation of stochastic weight-length parameters (females) for a preliminary operating model for Flinders Island. Top left is the fit of a preliminary weight length (W=aL^b) growth model to observed length-weight data.  Top right is the correlation among the slope (a) and power (b) parameters drawn from the variance-covariance matrix of the model fit.
 
 &nbsp;
 
